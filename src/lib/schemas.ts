@@ -11,3 +11,19 @@ export const createEventSchema = z.object({
 })
 
 export type CreateEventInput = z.infer<typeof createEventSchema>
+
+export const invitationStateSchema = z.enum(['PENDING', 'ACCEPTED', 'DECLINED'])
+
+export const createInvitationSchema = z.object({
+  name: z.string().min(1, 'Name is required').max(100, 'Name must be 100 characters or less'),
+  email: z.string().min(1, 'Email is required').email('Invalid email address'),
+  weddingEventId: z.string().min(1, 'Wedding event is required'),
+})
+
+export type CreateInvitationInput = z.infer<typeof createInvitationSchema>
+
+export const updateInvitationStateSchema = z.object({
+  state: invitationStateSchema,
+})
+
+export type UpdateInvitationStateInput = z.infer<typeof updateInvitationStateSchema>

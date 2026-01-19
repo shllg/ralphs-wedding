@@ -6,12 +6,31 @@ datasource db {
   provider = "postgresql"
 }
 
+enum InvitationState {
+  PENDING
+  ACCEPTED
+  DECLINED
+}
+
 model WeddingEvent {
-  id             String   @id @default(cuid())
+  id             String            @id @default(cuid())
   name           String
   eventDate      DateTime
   location       String
-  invitationText String   @db.Text
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  invitationText String            @db.Text
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  invitations    EventInvitation[]
+}
+
+model EventInvitation {
+  id             String          @id @default(uuid())
+  name           String
+  email          String
+  state          InvitationState @default(PENDING)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  weddingEventId String
+  weddingEvent   WeddingEvent    @relation(fields: [weddingEventId], references: [id], onDelete: Cascade)
 }
