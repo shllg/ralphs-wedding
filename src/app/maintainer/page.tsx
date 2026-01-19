@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import { CreateEventButton } from '@/components'
 
+export const dynamic = 'force-dynamic'
+
 export default async function MaintainerPage() {
   const events = await prisma.weddingEvent.findMany({
     orderBy: { createdAt: 'desc' },
