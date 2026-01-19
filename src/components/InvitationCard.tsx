@@ -3,6 +3,7 @@ import { Badge } from "./Badge";
 type InvitationState = "accepted" | "pending" | "declined";
 
 interface InvitationCardProps {
+  id: string;
   name: string;
   email: string;
   state: InvitationState;
@@ -10,6 +11,7 @@ interface InvitationCardProps {
 }
 
 export function InvitationCard({
+  id,
   name,
   email,
   state,
@@ -54,6 +56,15 @@ export function InvitationCard({
           </span>
         )}
         <Badge status={state} />
+        <a
+          href={`/invitation/${id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-testid="invitation-view-link"
+          className="rounded border border-ink-primary px-3 py-1.5 font-sans text-xs uppercase tracking-wide text-ink-primary transition-colors hover:bg-ink-primary hover:text-white"
+        >
+          View
+        </a>
       </div>
     </div>
   );

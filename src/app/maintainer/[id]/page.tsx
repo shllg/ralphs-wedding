@@ -250,6 +250,7 @@ export default async function WeddingEventPage({
             event.invitations.map((invitation) => (
               <InvitationCard
                 key={invitation.id}
+                id={invitation.id}
                 name={invitation.name}
                 email={invitation.email}
                 state={invitation.state.toLowerCase() as 'accepted' | 'pending' | 'declined'}

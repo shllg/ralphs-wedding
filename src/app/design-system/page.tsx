@@ -143,23 +143,27 @@ export default function DesignSystemPage() {
         </h2>
         <div className="space-y-3">
           <InvitationCard
+            id="demo-1"
             name="Emma Thompson"
             email="emma@email.com"
             state="accepted"
             plusOne
           />
           <InvitationCard
+            id="demo-2"
             name="James Wilson"
             email="james@email.com"
             state="accepted"
           />
           <InvitationCard
+            id="demo-3"
             name="Sophie Chen"
             email="sophie@email.com"
             state="pending"
             plusOne
           />
           <InvitationCard
+            id="demo-4"
             name="Robert Davis"
             email="robert@email.com"
             state="declined"
