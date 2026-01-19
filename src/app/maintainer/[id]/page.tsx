@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
-import { Card, Button, InvitationCard, InviteGuestButton } from '@/components'
+import { Card, Button, InvitationCard, InviteGuestButton, ScheduleSection } from '@/components'
 
 export default async function WeddingEventPage({
   params,
@@ -14,6 +14,9 @@ export default async function WeddingEventPage({
     include: {
       invitations: {
         orderBy: { createdAt: 'asc' },
+      },
+      scheduleItems: {
+        orderBy: { dateTime: 'asc' },
       },
     },
   })
@@ -232,6 +235,15 @@ export default async function WeddingEventPage({
             </div>
           </div>
         </Card>
+      </div>
+
+      {/* Event Schedule */}
+      <div className="mb-8">
+        <ScheduleSection
+          weddingEventId={event.id}
+          eventDate={event.eventDate}
+          scheduleItems={event.scheduleItems}
+        />
       </div>
 
       {/* Guest List */}

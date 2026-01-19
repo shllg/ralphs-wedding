@@ -10,3 +10,8 @@ export { Footer } from "./Footer";
 export { InvitationCard } from "./InvitationCard";
 export { InviteGuestForm } from "./InviteGuestForm";
 export { InviteGuestButton } from "./InviteGuestButton";
+export { ScheduleTimeline } from "./ScheduleTimeline";
+export { ScheduleItemCard } from "./ScheduleItemCard";
+export { AddScheduleItemForm } from "./AddScheduleItemForm";
+export { AddScheduleItemButton } from "./AddScheduleItemButton";
+export { ScheduleSection } from "./ScheduleSection";

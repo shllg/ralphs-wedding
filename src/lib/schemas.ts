@@ -27,3 +27,16 @@ export const updateInvitationStateSchema = z.object({
 })
 
 export type UpdateInvitationStateInput = z.infer<typeof updateInvitationStateSchema>
+
+export const createScheduleItemSchema = z.object({
+  title: z.string().min(1, 'Title is required').max(100, 'Title must be 100 characters or less'),
+  dateTime: z.string().min(1, 'Time is required').refine(
+    (val) => !isNaN(Date.parse(val)),
+    'Invalid date/time format'
+  ),
+  description: z.string().max(500, 'Description must be 500 characters or less').optional(),
+  location: z.string().max(200, 'Location must be 200 characters or less').optional(),
+  weddingEventId: z.string().min(1, 'Wedding event is required'),
+})
+
+export type CreateScheduleItemInput = z.infer<typeof createScheduleItemSchema>

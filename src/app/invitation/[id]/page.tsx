@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
-import { Card, Button } from '@/components'
+import { Card, Button, ScheduleTimeline } from '@/components'
 import { respondToInvitation } from '@/actions/respondToInvitation'
 
 export default async function InvitationPage({
@@ -12,7 +12,13 @@ export default async function InvitationPage({
   const invitation = await prisma.eventInvitation.findUnique({
     where: { id },
     include: {
-      weddingEvent: true,
+      weddingEvent: {
+        include: {
+          scheduleItems: {
+            orderBy: { dateTime: 'asc' },
+          },
+        },
+      },
     },
   })
 
@@ -132,7 +138,7 @@ export default async function InvitationPage({
       </Card>
 
       {/* Response Section */}
-      <Card className="text-center">
+      <Card className="mb-6 text-center">
         <h3 className="mb-4 font-serif text-xl font-medium text-ink-primary">
           Your Response
         </h3>
@@ -220,6 +226,11 @@ export default async function InvitationPage({
           </div>
         )}
       </Card>
+
+      {/* Schedule Timeline */}
+      {weddingEvent.scheduleItems.length > 0 && (
+        <ScheduleTimeline items={weddingEvent.scheduleItems} />
+      )}
     </div>
   )
 }
