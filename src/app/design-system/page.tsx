@@ -1,4 +1,4 @@
-import { Button, Badge, Card, EventItemCard } from "@/components";
+import { Button, Badge, Card, EventItemCard, InvitationCard } from "@/components";
 
 export default function DesignSystemPage() {
   return (
@@ -132,6 +132,37 @@ export default function DesignSystemPage() {
             description="A celebration with dinner, toasts, and dancing into the night."
             time="6:00 PM"
             location="Grand Ballroom"
+          />
+        </div>
+      </section>
+
+      {/* InvitationCard Section */}
+      <section className="mb-12" data-testid="invitation-cards-section">
+        <h2 className="font-serif text-2xl mb-6 border-b border-border-subtle pb-2">
+          Invitation Cards
+        </h2>
+        <div className="space-y-3">
+          <InvitationCard
+            name="Emma Thompson"
+            email="emma@email.com"
+            state="accepted"
+            plusOne
+          />
+          <InvitationCard
+            name="James Wilson"
+            email="james@email.com"
+            state="accepted"
+          />
+          <InvitationCard
+            name="Sophie Chen"
+            email="sophie@email.com"
+            state="pending"
+            plusOne
+          />
+          <InvitationCard
+            name="Robert Davis"
+            email="robert@email.com"
+            state="declined"
           />
         </div>
       </section>

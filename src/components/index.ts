@@ -5,3 +5,6 @@ export { EventItemCard } from "./EventItemCard";
 export { Modal } from "./Modal";
 export { CreateEventForm } from "./CreateEventForm";
 export { CreateEventButton } from "./CreateEventButton";
+export { Header } from "./Header";
+export { Footer } from "./Footer";
+export { InvitationCard } from "./InvitationCard";
