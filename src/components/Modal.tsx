@@ -3,13 +3,14 @@
 import { useRef, useEffect, type ReactNode } from 'react'
 
 interface ModalProps {
+  id?: string
   open: boolean
   onClose: () => void
   title: string
   children: ReactNode
 }
 
-export function Modal({ open, onClose, title, children }: ModalProps) {
+export function Modal({ id, open, onClose, title, children }: ModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
   return (
     <dialog
       ref={dialogRef}
-      id="create-event-modal"
+      id={id}
       className="p-0 rounded-lg backdrop:bg-black/50 max-w-lg w-full"
     >
       <div className="p-6">

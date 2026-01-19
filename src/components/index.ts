@@ -8,3 +8,5 @@ export { CreateEventButton } from "./CreateEventButton";
 export { Header } from "./Header";
 export { Footer } from "./Footer";
 export { InvitationCard } from "./InvitationCard";
+export { InviteGuestForm } from "./InviteGuestForm";
+export { InviteGuestButton } from "./InviteGuestButton";
