@@ -1,23 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import type { WeddingEvent } from '@/types/wedding-event'
-
-async function getWeddingEvent(id: string): Promise<WeddingEvent | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-  const res = await fetch(`${baseUrl}/api/maintainer/wedding-events/${id}`, {
-    cache: 'no-store',
-  })
-
-  if (res.status === 404) {
-    return null
-  }
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch wedding event')
-  }
-
-  return res.json()
-}
+import { prisma } from '@/lib/prisma'
 
 export default async function WeddingEventPage({
   params,
@@ -25,7 +8,9 @@ export default async function WeddingEventPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const event = await getWeddingEvent(id)
+  const event = await prisma.weddingEvent.findUnique({
+    where: { id },
+  })
 
   if (!event) {
     notFound()

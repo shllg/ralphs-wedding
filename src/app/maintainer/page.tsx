@@ -1,21 +1,10 @@
 import Link from 'next/link'
-import type { WeddingEvent } from '@/types/wedding-event'
-
-async function getWeddingEvents(): Promise<WeddingEvent[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-  const res = await fetch(`${baseUrl}/api/maintainer/wedding-events`, {
-    cache: 'no-store',
-  })
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch wedding events')
-  }
-
-  return res.json()
-}
+import { prisma } from '@/lib/prisma'
 
 export default async function MaintainerPage() {
-  const events = await getWeddingEvents()
+  const events = await prisma.weddingEvent.findMany({
+    orderBy: { createdAt: 'desc' },
+  })
 
   return (
     <main className="p-8">

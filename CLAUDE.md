@@ -2,6 +2,12 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Multi-Agent Worktree Setup
+
+This project uses git worktrees for parallel agent work:
+- **`main/`** (this directory): `master` branch - primary development
+- **`../agent-1/`**: Continuously resetting branch for parallel work by another agent
+
 ## Project Overview
 
 Wedding invitation management application built with Next.js 16, Supabase, and Prisma. No authentication is implemented.
