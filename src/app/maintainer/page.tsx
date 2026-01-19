@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
+import { CreateEventButton } from '@/components'
 
 export default async function MaintainerPage() {
   const events = await prisma.weddingEvent.findMany({
@@ -8,7 +9,10 @@ export default async function MaintainerPage() {
 
   return (
     <main className="p-8">
-      <h1 className="text-2xl font-bold mb-6">Wedding Events</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">Wedding Events</h1>
+        <CreateEventButton />
+      </div>
 
       <ul id="wedding-events-list" className="space-y-4">
         {events.map((event) => (
@@ -17,7 +21,14 @@ export default async function MaintainerPage() {
               href={`/maintainer/${event.id}`}
               className="block p-4 border rounded hover:bg-gray-50"
             >
-              <span data-testid="event-name">{event.name}</span>
+              <span data-testid="event-name" className="font-medium">{event.name}</span>
+              <div className="mt-2 text-sm text-gray-600">
+                <span data-testid="event-date">
+                  {new Date(event.eventDate).toLocaleDateString()}
+                </span>
+                <span className="mx-2">|</span>
+                <span data-testid="event-location">{event.location}</span>
+              </div>
             </Link>
           </li>
         ))}
